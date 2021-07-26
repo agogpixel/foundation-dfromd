@@ -6,11 +6,11 @@
 
 When no `CMD` is provided, container will run as a daemon.
 
-- Root user, with daemon: `docker run [-d] agogpixel/foundation-dfromd`
-- Root user, no daemon: `docker run -it --rm agogpixel/foundation-dfromd <cmd>`
+- Root user, with daemon: `docker run [-d] --mount source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind agogpixel/foundation-dfromd`
+- Root user, no daemon: `docker run -it --rm --mount source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind agogpixel/foundation-dfromd <cmd>`
 
-- Non-root user, with daemon: `docker run [-d] --user non-root agogpixel/foundation-dfromd`
-- Non-root user, no daemon: `docker run -it --rm --user non-root agogpixel/foundation-dfromd <cmd>`
+- Non-root user, with daemon: `docker run [-d] --user non-root --mount source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind agogpixel/foundation-dfromd`
+- Non-root user, no daemon: `docker run -it --rm --user non-root --mount source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind agogpixel/foundation-dfromd <cmd>`
 
 ## Build
 
