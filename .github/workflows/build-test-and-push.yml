@@ -4,8 +4,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-    branches:
-      - main
+    types:
+      - build-test-and-push
 jobs:
   Build-Test-And-Push:
     runs-on: ubuntu-latest
