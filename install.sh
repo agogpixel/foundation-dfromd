@@ -34,7 +34,16 @@ EOF
 
 foundation_dfromd_install_install_packages() {
     printf '\nInstalling packages...\n'
-    apk add --no-cache --update ${FOUNDATION_DFROMD_INSTALL_PACKAGES}
+
+    local packages="${FOUNDATION_DFROMD_INSTALL_PACKAGES}"
+    local legacy_versions=(3.15 3.14 3.13 3.12 3.11)
+
+    if [[ ! " ${legacy_versions[*]} " =~ " ${FOUNDATION_DFROMD_INSTALL_FOUNDATION_VERSION} " ]]; then
+        # whatever you want to do when array doesn't contain value
+        packages="${packages} shadow-login"
+    fi
+
+    apk add --no-cache --update ${packages}
 }
 
 foundation_dfromd_install_add_users_to_docker_group() {
